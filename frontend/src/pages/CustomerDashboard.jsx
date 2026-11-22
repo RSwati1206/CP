@@ -4,7 +4,6 @@ import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import LeafletMap from '../components/LeafletMap';
 import DealBadge from '../components/DealBadge';
-import FloatingDeals from '../components/FloatingDeals';
 import ScrollReveal from '../components/ScrollReveal';
 import { 
   Search, 
@@ -114,9 +113,6 @@ export default function CustomerDashboard() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative">
       
-      {/* Floating Ambient Deals of the Day */}
-      <FloatingDeals offers={recommendations.recommended_offers} />
-
       {/* Welcome Banner - Refined Deep Teal to Emerald Gradient */}
       <ScrollReveal direction="down" duration={600}>
         <div className="relative rounded-3xl bg-gradient-to-r from-teal-900 via-emerald-800 to-teal-950 dark:from-teal-950 dark:via-emerald-950 dark:to-slate-950 text-white p-6 sm:p-8 shadow-xl overflow-hidden border border-teal-700/40 dark:border-teal-800/40">
