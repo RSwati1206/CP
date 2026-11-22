@@ -56,25 +56,22 @@ export default function FloatingDeals({ offers = [] }) {
   return (
     <div 
       className="pointer-events-none fixed inset-0 z-30 overflow-hidden select-none floating-deals-container"
-      aria-label="Floating Deals of the Day"
+      aria-label="Deals of the Day"
     >
-      {/* 4 gently drifting deals positioned with distinct floating tracks */}
+      {/* Positioned static offer cards with hover interactivity */}
       {featuredDeals.map((deal, idx) => {
-        // Track variations
-        const animationClasses = [
-          'animate-drift-1 top-[18%] left-[4%]',
-          'animate-drift-2 top-[32%] right-[5%]',
-          'animate-drift-3 bottom-[20%] left-[8%]',
-          'animate-drift-4 bottom-[28%] right-[10%]'
+        // Exact visual positions preserved without floating motion
+        const positionClasses = [
+          'top-[18%] left-[4%]',
+          'top-[32%] right-[5%]',
+          'bottom-[20%] left-[8%]',
+          'bottom-[28%] right-[10%]'
         ][idx % 4];
 
         return (
           <div
             key={deal.id || idx}
-            className={`pointer-events-auto absolute ${animationClasses} transition-transform duration-300 hover:scale-105 hover:z-40`}
-            style={{
-              animationPlayState: 'running'
-            }}
+            className={`pointer-events-auto absolute ${positionClasses} transition-transform duration-300 hover:scale-105 hover:z-40`}
           >
             <div className="group relative flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-amber-300/80 dark:border-amber-500/50 shadow-xl shadow-amber-500/10 dark:shadow-black/50 max-w-[280px] sm:max-w-[320px]">
               
