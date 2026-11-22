@@ -33,9 +33,9 @@ def register():
 
     db = SessionLocal()
     try:
-        existing = db.query(User).filter(User.email == email).first()
+        existing = db.query(User).filter(User.email == email, User.role == role).first()
         if existing:
-            return jsonify({"error": "An account with this email already exists"}), 409
+            return jsonify({"error": f"An account with this email already exists as a {role.replace('_', ' ')}"}), 409
 
         new_user = User(
             name=name,
@@ -66,13 +66,20 @@ def login():
     data = request.get_json() or {}
     email = (data.get('email') or '').strip().lower()
     password = data.get('password') or ''
+    role = data.get('role')
 
     if not email or not password:
         return jsonify({"error": "Email and password are required"}), 400
 
     db = SessionLocal()
     try:
-        user = db.query(User).filter(User.email == email).first()
+        q = db.query(User).filter(User.email == email)
+        user = None
+        if role:
+            user = q.filter(User.role == role).first()
+        if not user:
+            user = q.first()
+
         if not user or not user.check_password(password):
             return jsonify({"error": "Invalid email or password"}), 401
 

@@ -42,7 +42,7 @@ def create_app():
     def health_check():
         return jsonify({
             "status": "healthy",
-            "service": "Local Business Promotion and Market Analytics Portal API",
+            "service": "BizConnect — Local Commerce and Market Analytics Portal API",
             "version": "1.0.0",
             "database": "PostgreSQL (compatible / configured with SQLite fallback)"
         }), 200

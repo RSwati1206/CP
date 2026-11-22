@@ -36,9 +36,10 @@ def seed_database():
     admin_user.set_password("Password123!")
     db.add(admin_user)
 
+    # Primary demo owner (R. Swati)
     demo_owner = User(
-        name="Vikram Rao",
-        email="owner@demo.com",
+        name="R. Swati (Owner)",
+        email="rswati1206@gmail.com",
         role="business_owner",
         phone="+91 98450 67890",
         address="12th Cross, Ideal Homes, RR Nagar, Bengaluru",
@@ -47,9 +48,22 @@ def seed_database():
     demo_owner.set_password("Password123!")
     db.add(demo_owner)
 
+    # Alias owner for owner@demo.com compatibility
+    alias_owner = User(
+        name="Vikram Rao",
+        email="owner@demo.com",
+        role="business_owner",
+        phone="+91 98450 67890",
+        address="12th Cross, Ideal Homes, RR Nagar, Bengaluru",
+        is_active=True
+    )
+    alias_owner.set_password("Password123!")
+    db.add(alias_owner)
+
+    # Primary demo customer (R. Swati)
     demo_customer = User(
-        name="Priya Sharma",
-        email="customer@demo.com",
+        name="R. Swati (Customer)",
+        email="rswati1206@gmail.com",
         role="customer",
         phone="+91 99001 23456",
         address="BEML Layout, RR Nagar, Bengaluru",
@@ -57,6 +71,18 @@ def seed_database():
     )
     demo_customer.set_password("Password123!")
     db.add(demo_customer)
+
+    # Alias customer for customer@demo.com compatibility
+    alias_customer = User(
+        name="Priya Sharma",
+        email="customer@demo.com",
+        role="customer",
+        phone="+91 99001 23456",
+        address="BEML Layout, RR Nagar, Bengaluru",
+        is_active=True
+    )
+    alias_customer.set_password("Password123!")
+    db.add(alias_customer)
 
     # Additional owners
     owner_accounts = [demo_owner]
@@ -285,39 +311,107 @@ def seed_database():
             "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80",
             "tags": "laptop repair, phone repair, screen fix, apple, electronics"
         },
-        # 12. Healthcare & Pharmacy 1
+        # 12. Restaurants & Cafes (New)
         {
             "owner": owner_accounts[3],
-            "name": "LifeCare 24x7 Pharmacy & Diagnostic Clinic",
-            "category": "Healthcare & Pharmacy",
-            "description": "24/7 retail pharmacy with complete stock of prescription medicines, surgical supplies, baby care, and an attached diagnostic blood test lab.",
-            "address": "18, Mysore Road Junction, Kengeri",
+            "name": "Brew & Bean Artisan Coffee House",
+            "category": "Restaurants & Cafes",
+            "description": "Specialty micro-roastery and serene community workspace serving pour-over single origins, avocado sourdough toast, cold brews, and fresh cinnamon rolls.",
+            "address": "14, 5th Cross, Ideal Homes Township, RR Nagar",
             "city": "Bengaluru",
-            "lat": 12.9120,
-            "lon": 77.4890,
-            "phone": "+91 80 2860 1199",
-            "email": "care@lifecarepharmacy.in",
-            "website": "https://lifecarepharmacy.in",
-            "opening_hours": "Open 24 Hours, 7 Days a Week",
-            "image": "https://images.unsplash.com/photo-1586015555751-63bb77f4322a?auto=format&fit=crop&w=800&q=80",
-            "tags": "pharmacy, medicines, 24x7, health, diagnostics, baby care"
+            "lat": 12.9055,
+            "lon": 77.5218,
+            "phone": "+91 80 2860 9944",
+            "email": "hello@brewandbeancafe.in",
+            "website": "https://brewandbeancafe.in",
+            "opening_hours": "Mon-Sun: 7:30 AM - 10:30 PM",
+            "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80",
+            "tags": "cafe, artisan coffee, breakfast, cold brew, workspace, pastries"
         },
-        # 13. Healthcare & Pharmacy 2
+        # 13. Restaurants & Cafes (New - Near RNSIT)
         {
             "owner": owner_accounts[1],
-            "name": "Sanjeevini Family Health Clinic",
-            "category": "Healthcare & Pharmacy",
-            "description": "Multi-specialty primary health center with experienced pediatricians, gynecologists, general physicians, and digital vaccination records.",
-            "address": "33, Jawaharlal Nehru Road, RR Nagar",
+            "name": "Udupi Vaibhav Heritage Tiffin Room",
+            "category": "Restaurants & Cafes",
+            "description": "Legendary student and family breakfast spot 200m from RNSIT Gate. Authentic Davangere benne dosa, piping hot crispy vadas, kesari bath, and strong degree filter coffee.",
+            "address": "8, Channasandra Main Road, 200m from RNSIT Gate",
             "city": "Bengaluru",
-            "lat": 12.9040,
-            "lon": 77.5180,
-            "phone": "+91 80 2860 7744",
-            "email": "help@sanjeeviniclinic.in",
-            "website": "https://sanjeeviniclinic.in",
-            "opening_hours": "Mon-Sat: 8:00 AM - 8:00 PM",
-            "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
-            "tags": "doctor, clinic, pediatrician, family doctor, consultation"
+            "lat": 12.8975,
+            "lon": 77.5165,
+            "phone": "+91 98452 33441",
+            "email": "contact@udupivaibhav.in",
+            "website": "https://udupivaibhav.in",
+            "opening_hours": "Mon-Sun: 6:30 AM - 10:30 PM",
+            "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80",
+            "tags": "south indian, benne dosa, tiffin, filter coffee, breakfast, rnsit"
+        },
+        # 14. Grocery & Supermarket (New)
+        {
+            "owner": owner_accounts[2],
+            "name": "Nandi Organics & Farm Fresh Market",
+            "category": "Grocery & Supermarket",
+            "description": "Certified organic heirloom vegetables, pesticide-free local fruits, cold-pressed oils, unpolished native millets, and Vedic A2 bilona cow ghee.",
+            "address": "51, Jawaharlal Nehru Road, RR Nagar",
+            "city": "Bengaluru",
+            "lat": 12.9028,
+            "lon": 77.5188,
+            "phone": "+91 98456 77889",
+            "email": "orders@nandiorganics.in",
+            "website": "https://nandiorganics.in",
+            "opening_hours": "Mon-Sun: 7:00 AM - 9:30 PM",
+            "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80",
+            "tags": "organic, vegetables, a2 ghee, millets, farm fresh, cold pressed"
+        },
+        # 15. Grocery & Supermarket (New)
+        {
+            "owner": owner_accounts[4],
+            "name": "DailyBasket Superstore & Gourmet Hub",
+            "category": "Grocery & Supermarket",
+            "description": "Modern neighborhood supermarket featuring international imported gourmet snacks, artisan cheeses, fresh dairy, household pantry essentials, and fast checkout.",
+            "address": "102, Near RR Nagar Metro Station, Outer Ring Road",
+            "city": "Bengaluru",
+            "lat": 12.9170,
+            "lon": 77.5280,
+            "phone": "+91 80 2860 5511",
+            "email": "support@dailybasketmart.in",
+            "website": "https://dailybasketmart.in",
+            "opening_hours": "Mon-Sun: 7:00 AM - 10:30 PM",
+            "image": "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=800&q=80",
+            "tags": "supermarket, gourmet, dairy, metro, grocery, snacks"
+        },
+        # 16. Restaurants & Cafes (New)
+        {
+            "owner": owner_accounts[0],
+            "name": "The Coastal Bay Seafood & Grill",
+            "category": "Restaurants & Cafes",
+            "description": "Authentic coastal Karnataka seafood kitchen famous for Kundapura chicken ghee roast, neer dosa, surmai tawa fry, and aromatic fish curry.",
+            "address": "72, BEML Layout 5th Stage, RR Nagar",
+            "city": "Bengaluru",
+            "lat": 12.9090,
+            "lon": 77.5240,
+            "phone": "+91 80 2860 8822",
+            "email": "dine@coastalbaygrill.com",
+            "website": "https://coastalbaygrill.com",
+            "opening_hours": "Mon-Sun: 12:00 PM - 3:30 PM, 7:00 PM - 11:00 PM",
+            "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+            "tags": "coastal, seafood, ghee roast, dinner, family dining"
+        },
+        # 17. Grocery & Supermarket (New - Near RNSIT)
+        {
+            "owner": owner_accounts[7],
+            "name": "GreenLeaf Agro & Dairy Mart",
+            "category": "Grocery & Supermarket",
+            "description": "Farm-direct milk and dairy depot supplying raw farm milk, fresh malai paneer, thick curd, country eggs, and seasonal farm vegetables harvested daily at dawn.",
+            "address": "19, RNSIT College Road, Channasandra",
+            "city": "Bengaluru",
+            "lat": 12.8995,
+            "lon": 77.5150,
+            "phone": "+91 98458 11223",
+            "email": "care@greenleafmart.in",
+            "website": "https://greenleafmart.in",
+            "opening_hours": "Mon-Sun: 6:00 AM - 9:00 PM",
+            "image": "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80",
+            "tags": "dairy, a2 milk, paneer, rnsit, fresh vegetables, groceries"
         },
         # 14. Retail & Fashion 1
         {
@@ -452,7 +546,10 @@ def seed_database():
         (6, "Full Hair Spa + Scalp Detox Treatment at ₹799 (Flat 35% Off)", "GLOW35", 35.0, False, "Pamper yourself with our signature hair care package."),
         (8, "1 Month Free on Annual Gym & Crossfit Membership", "FIT2026", 20.0, False, "Includes 2 complimentary personal trainer sessions and nutrition chart."),
         (10, "Free Laptop Diagnostic Check & Internal Thermal Cleaning", "TECHCLEAN", 50.0, False, "Speed up your work laptop in under 45 minutes."),
-        (11, "Free Home Delivery & 10% Off on Monthly Medicine Refills", "HEALTH10", 10.0, False, "Send prescription on WhatsApp for instant doorstep delivery.")
+        (11, "Buy 1 Artisanal Pour-over, Get 1 Cinnamon Roll Free", "BREWROLL", 20.0, False, "Roasted fresh daily. Perfect for students and work-from-cafe neighbors!"),
+        (12, "Student & Neighbor Benne Dosa + Filter Coffee @ ₹79", "RNSIT79", 25.0, False, "Authentic Davangere butter dosa with strong degree coffee."),
+        (13, "Flat 15% Off Organic Millets & Cold Pressed Mustard Oil", "NANDI15", 15.0, False, "Direct from certified local Karnataka farm cooperatives."),
+        (14, "Weekend Super Mart Discount: Flat ₹150 Off on ₹999", "BASKET150", 15.0, False, "All groceries, daily essentials, and imported gourmet snacks.")
     ]
 
     for b_idx, title, code, pct, is_ev, desc in offers_pool:
@@ -540,7 +637,7 @@ def seed_database():
     print("Seeding search logs and view logs to power demand analytics and heatmaps...")
     categories_list = [
         "Restaurants & Cafes", "Grocery & Supermarket", "Salons & Spas", 
-        "Fitness & Gym", "Electronics & Repair", "Healthcare & Pharmacy", 
+        "Fitness & Gym", "Electronics & Repair", 
         "Retail & Fashion", "Bakery & Sweets"
     ]
     popular_queries = [
@@ -551,7 +648,8 @@ def seed_database():
         ("hair salon haircut", "Salons & Spas"),
         ("crossfit gym", "Fitness & Gym"),
         ("laptop repair", "Electronics & Repair"),
-        ("24x7 pharmacy", "Healthcare & Pharmacy"),
+        ("artisan coffee", "Restaurants & Cafes"),
+        ("farm fresh dairy", "Grocery & Supermarket"),
         ("mysore silk saree", "Retail & Fashion"),
         ("sourdough bread", "Bakery & Sweets"),
         ("filter coffee", "Restaurants & Cafes")

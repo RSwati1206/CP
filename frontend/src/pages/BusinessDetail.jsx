@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import LeafletMap from '../components/LeafletMap';
+import DealBadge from '../components/DealBadge';
 import { 
   Star, 
   MapPin, 
@@ -104,7 +105,7 @@ export default function BusinessDetail() {
     if (navigator.share && business) {
       navigator.share({
         title: business.name,
-        text: `Check out ${business.name} in Bengaluru on LocalMarket Portal!`,
+        text: `Check out ${business.name} in Bengaluru on BizConnect!`,
         url: window.location.href,
       }).catch(() => {});
     } else {
@@ -269,31 +270,33 @@ export default function BusinessDetail() {
           {activeTab === 'deals' && (
             <div className="space-y-4">
               {business.offers?.length === 0 ? (
-                <div className="bg-white p-8 rounded-2xl border border-slate-200 text-center text-slate-500">
-                  <Tag className="w-10 h-10 text-slate-300 mx-auto mb-2" />
-                  <p className="text-sm font-medium">No active discount deals currently scheduled.</p>
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-slate-500">
+                  <Tag className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-2" />
+                  <p className="text-sm font-medium dark:text-slate-300">No active discount deals currently scheduled.</p>
                   <p className="text-xs text-slate-400 mt-1">Check back soon for festive and seasonal specials!</p>
                 </div>
               ) : (
                 business.offers.map((offer) => (
-                  <div key={offer.id} className="bg-gradient-to-r from-emerald-50/80 to-teal-50/50 border border-emerald-200 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+                  <div key={offer.id} className="bg-gradient-to-r from-emerald-50/80 to-teal-50/50 dark:from-emerald-950/40 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800/60 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
                     <div>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className="text-xs font-extrabold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full uppercase">
-                          {offer.discount_percent ? `${offer.discount_percent}% OFF` : 'SPECIAL OFFER'}
-                        </span>
-                        <span className="text-[11px] text-slate-500">
+                      <div className="flex items-center gap-2 mb-2">
+                        <DealBadge 
+                          discount={offer.discount_percent} 
+                          status={offer.is_event ? 'event' : 'active'}
+                          code={offer.discount_code}
+                        />
+                        <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                           Valid until {new Date(offer.end_date).toLocaleDateString()}
                         </span>
                       </div>
-                      <h3 className="font-bold text-slate-900 text-base">{offer.title}</h3>
-                      <p className="text-xs text-slate-600 mt-1 leading-relaxed">{offer.description}</p>
+                      <h3 className="font-extrabold text-slate-900 dark:text-white text-base">{offer.title}</h3>
+                      <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">{offer.description}</p>
                     </div>
 
                     {offer.discount_code && (
-                      <div className="shrink-0 flex flex-col items-center gap-1 bg-white p-3 rounded-xl border border-emerald-300 shadow-sm">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase">Coupon Code</span>
-                        <span className="text-sm font-mono font-extrabold text-emerald-700 tracking-wider">
+                      <div className="shrink-0 flex flex-col items-center gap-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-emerald-300 dark:border-emerald-700 shadow-xs">
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Coupon Code</span>
+                        <span className="text-sm font-mono font-extrabold text-emerald-700 dark:text-emerald-400 tracking-wider">
                           {offer.discount_code}
                         </span>
                       </div>

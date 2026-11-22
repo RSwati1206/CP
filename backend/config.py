@@ -10,7 +10,7 @@ class Config:
     if not DATABASE_URL:
         # Default to local sqlite file in backend directory
         base_dir = os.path.abspath(os.path.dirname(__file__))
-        DATABASE_URL = f"sqlite:///{os.path.join(base_dir, 'local_promo.db')}"
+        DATABASE_URL = f"sqlite:///{os.path.join(base_dir, 'local_promo_v2.db')}"
     elif DATABASE_URL.startswith("postgres://"):
         DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+psycopg2://", 1)
 

@@ -37,10 +37,10 @@ class ApiService {
   }
 
   // Auth endpoints
-  login(email, password) {
+  login(email, password, role = null) {
     return this.request('/auth/login', {
       method: 'POST',
-      body: { email, password }
+      body: { email, password, ...(role ? { role } : {}) }
     });
   }
 

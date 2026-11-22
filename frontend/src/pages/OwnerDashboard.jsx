@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import LeafletMap from '../components/LeafletMap';
+import DealBadge from '../components/DealBadge';
+import ScrollReveal from '../components/ScrollReveal';
 
 // Chart.js imports & registrations
 import {
@@ -810,30 +812,24 @@ export default function OwnerDashboard() {
           {/* Offers List */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {offers.map((offer) => (
-              <div key={offer.id} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 flex flex-col justify-between">
+              <div key={offer.id} className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3 flex flex-col justify-between transition-colors">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase ${
-                      offer.is_event ? 'bg-purple-100 text-purple-700' : 'bg-emerald-100 text-emerald-700'
-                    }`}>
-                      {offer.is_event ? 'Local Event' : 'Deal / Offer'}
-                    </span>
+                    <DealBadge 
+                      status={offer.is_event ? 'event' : (offer.is_valid ? 'active' : 'expiring')}
+                      label={offer.is_event ? 'Local Event' : (offer.discount_percent ? `${offer.discount_percent}% OFF` : 'Active Deal')}
+                      code={offer.discount_code}
+                    />
 
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                      offer.is_valid ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-400'
+                      offer.is_valid ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300' : 'bg-slate-100 dark:bg-slate-800 text-slate-400'
                     }`}>
                       {offer.is_valid ? 'Active & Live' : 'Expired'}
                     </span>
                   </div>
 
-                  <h4 className="font-bold text-slate-900 text-sm">{offer.title}</h4>
-                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">{offer.description}</p>
-                  
-                  {offer.discount_code && (
-                    <div className="mt-2 text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded inline-block">
-                      CODE: {offer.discount_code}
-                    </div>
-                  )}
+                  <h4 className="font-extrabold text-slate-900 dark:text-white text-sm">{offer.title}</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">{offer.description}</p>
                 </div>
 
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
@@ -1037,7 +1033,6 @@ export default function OwnerDashboard() {
                   <option value="Salons & Spas">Salons & Spas</option>
                   <option value="Fitness & Gym">Fitness & Gym</option>
                   <option value="Electronics & Repair">Electronics & Repair</option>
-                  <option value="Healthcare & Pharmacy">Healthcare & Pharmacy</option>
                   <option value="Retail & Fashion">Retail & Fashion</option>
                   <option value="Bakery & Sweets">Bakery & Sweets</option>
                 </select>

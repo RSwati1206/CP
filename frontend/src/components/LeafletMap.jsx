@@ -9,14 +9,13 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-// Category color palettes for custom SVG markers
+// Category color palettes for custom SVG markers (No pharmacy/medical)
 const CATEGORY_COLORS = {
   'Restaurants & Cafes': '#ea580c', // Orange
   'Grocery & Supermarket': '#16a34a', // Green
   'Salons & Spas': '#db2777', // Pink
   'Fitness & Gym': '#7c3aed', // Purple
   'Electronics & Repair': '#2563eb', // Blue
-  'Healthcare & Pharmacy': '#dc2626', // Red
   'Retail & Fashion': '#0891b2', // Cyan
   'Bakery & Sweets': '#d97706', // Amber
   'default': '#4f46e5'
@@ -145,7 +144,7 @@ export default function LeafletMap({
       L.marker([centerCoords.lat, centerCoords.lng], {
         icon: createUserLocationPin()
       })
-      .bindPopup('<div class="text-xs font-semibold text-slate-800">Your Current Location</div>')
+      .bindPopup('<div class="text-xs font-semibold text-slate-800 dark:text-slate-100">Your Current Location</div>')
       .addTo(map);
     }
 
@@ -159,20 +158,33 @@ export default function LeafletMap({
 
       const marker = L.marker([b.latitude, b.longitude], { icon }).addTo(map);
 
+      // High contrast, WCAG AA compliant popup HTML (File 4 fix)
       const popupHtml = `
-        <div style="min-width: 190px;" class="p-1">
-          <div class="flex items-center justify-between gap-2 mb-1">
-            <span style="background-color: ${color}20; color: ${color};" class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
+        <div style="min-width: 200px;" class="bizconnect-map-popup p-1">
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <span class="popup-category text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" style="background-color: ${color}22; color: ${color}; border: 1px solid ${color}55;">
               ${b.category}
             </span>
-            <span class="text-xs font-bold text-amber-500">★ ${b.average_rating || 'New'}</span>
+            <span class="popup-rating text-xs font-bold text-amber-500 flex items-center gap-0.5">
+              ★ ${b.average_rating || 'New'}
+            </span>
           </div>
-          <h4 class="font-bold text-sm text-slate-900 mb-1 leading-snug">${b.name}</h4>
-          <p class="text-xs text-slate-500 mb-2 leading-tight">${b.address}</p>
-          ${b.distance_km !== undefined ? `<div class="text-xs font-medium text-slate-600 mb-2">📍 ${b.distance_km} km away</div>` : ''}
-          ${b.active_offers_count ? `<div class="text-[11px] font-semibold text-emerald-600 mb-2">🎁 ${b.active_offers_count} Active Promotion(s)</div>` : ''}
-          <a href="/business/${b.id}" class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-1.5 px-3 rounded-lg no-underline transition-colors">
-            View Store Details
+          <h4 class="popup-title font-bold text-sm text-slate-900 mb-1 leading-snug">
+            ${b.name}
+          </h4>
+          <p class="popup-address text-xs text-slate-600 mb-2 leading-tight">
+            ${b.address}
+          </p>
+          ${b.distance_km !== undefined ? `
+            <div class="popup-distance text-xs font-semibold text-slate-700 mb-2">
+              📍 ${b.distance_km} km away
+            </div>` : ''}
+          ${b.active_offers_count ? `
+            <div class="popup-offers text-[11px] font-bold text-emerald-600 mb-2">
+              🎁 ${b.active_offers_count} Active Deal(s)
+            </div>` : ''}
+          <a href="/business/${b.id}" class="popup-button inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-xl no-underline transition-colors shadow-xs">
+            View Store Details →
           </a>
         </div>
       `;
@@ -210,7 +222,7 @@ export default function LeafletMap({
     <div className="relative w-full h-full">
       <div ref={mapContainerRef} className={className} style={{ minHeight: '380px' }} />
       {pickerMode && (
-        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-md text-xs font-semibold text-slate-700 border border-slate-200 z-20 pointer-events-none">
+        <div className="absolute top-3 right-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-md text-xs font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 z-20 pointer-events-none">
           Click map or drag marker to set business pin
         </div>
       )}

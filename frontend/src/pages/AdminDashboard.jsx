@@ -117,10 +117,10 @@ export default function AdminDashboard() {
             <ShieldCheck className="w-4 h-4" /> System Administrator Console
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            Portal Control & Moderation Center
+            BizConnect Control & Moderation Center
           </h1>
           <p className="text-xs text-purple-200 mt-1 max-w-xl">
-            Oversee all registered merchants, customers, content moderation, and platform activity metrics.
+            Oversee all registered merchants, customers, content moderation, and platform activity metrics across BizConnect.
           </p>
         </div>
 

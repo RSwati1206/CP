@@ -28,7 +28,7 @@ for s in rec_data.get('recommended_shops', [])[:2]:
     print(f" - Recommended: {s['name']} -> {s['recommendation_reason']}")
 
 # 4. Test login as owner
-res = client.post('/api/auth/login', json={"email": "owner@demo.com", "password": "Password123!"})
+res = client.post('/api/auth/login', json={"email": "rswati1206@gmail.com", "password": "Password123!", "role": "business_owner"})
 login_data = res.get_json()
 print("Owner login status:", res.status_code, "Role:", login_data.get('user', {}).get('role'), "Business ID:", login_data.get('user', {}).get('business_id'))
 token = login_data.get('token')

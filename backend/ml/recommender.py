@@ -43,7 +43,7 @@ class RecommenderEngine:
             if s.query:
                 # Partial match search query against known categories
                 for cat in ["Restaurants & Cafes", "Grocery & Supermarket", "Salons & Spas", 
-                            "Retail & Fashion", "Healthcare & Pharmacy", "Fitness & Gym", 
+                            "Retail & Fashion", "Fitness & Gym", 
                             "Electronics & Repair", "Bakery & Sweets"]:
                     if s.query.lower() in cat.lower():
                         category_weights[cat] += 1.5

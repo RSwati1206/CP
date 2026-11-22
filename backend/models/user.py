@@ -1,15 +1,18 @@
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, UniqueConstraint
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from backend.database import Base
 
 class User(Base):
     __tablename__ = 'users'
+    __table_args__ = (
+        UniqueConstraint('email', 'role', name='uq_user_email_role'),
+    )
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100), nullable=False)
-    email = Column(String(150), unique=True, nullable=False, index=True)
+    email = Column(String(150), nullable=False, index=True)
     password_hash = Column(String(255), nullable=False)
     role = Column(String(20), nullable=False, default='customer')  # 'customer', 'business_owner', 'admin'
     phone = Column(String(30), nullable=True)
