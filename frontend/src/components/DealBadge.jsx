@@ -38,8 +38,9 @@ export default function DealBadge({
     styleClasses = 'bg-rose-100 dark:bg-rose-950/90 text-rose-900 dark:text-rose-200 border-rose-300 dark:border-rose-700';
     Icon = Sparkles;
   } else if (discount) {
-    // High-contrast, bold, vibrant pill that stands out with 7:1+ contrast in both light and dark mode
-    styleClasses = 'bg-emerald-700 dark:bg-emerald-600 text-white border border-emerald-800 dark:border-emerald-400 shadow-xs font-black';
+    // Uses centralized theme tokens: dark-grey-to-light-grey gradient with thin teal border in dark mode (File 1),
+    // and high-contrast vibrant emerald-teal gradient with thin teal border in light mode (File 2)
+    styleClasses = 'coupon-badge-discount';
     Icon = Flame;
   }
 
@@ -47,12 +48,12 @@ export default function DealBadge({
 
   return (
     <span
-      className={`inline-flex items-center font-bold rounded-full border shadow-2xs transition-all relative overflow-hidden shimmer-badge ${sizeClasses} ${styleClasses} ${className}`}
+      className={`inline-flex items-center font-black uppercase tracking-wide rounded-full border shadow-2xs transition-all relative overflow-hidden shimmer-badge ${sizeClasses} ${styleClasses} ${className}`}
     >
       <Icon className="w-3.5 h-3.5 shrink-0" />
       <span className="font-black tracking-wide">{defaultText}</span>
       {code && (
-        <span className="ml-1 pl-1.5 border-l border-current/40 text-[10px] font-mono font-bold tracking-wider opacity-100 uppercase">
+        <span className="badge-code ml-1.5 pl-1.5 border-l text-[10px] font-mono font-bold tracking-wider uppercase">
           {code}
         </span>
       )}

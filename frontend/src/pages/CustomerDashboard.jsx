@@ -261,7 +261,7 @@ export default function CustomerDashboard() {
                   {recommendations.recommended_offers.map((offer) => (
                     <div 
                       key={offer.id} 
-                      className="p-3.5 bg-emerald-50/90 dark:bg-slate-800/90 border border-emerald-200/90 dark:border-slate-700 rounded-2xl flex items-center justify-between hover:shadow-md transition-all duration-200"
+                      className="coupon-offer-card p-3.5 rounded-2xl flex items-center justify-between hover:shadow-md transition-all duration-200"
                     >
                       <div className="min-w-0 pr-2">
                         <DealBadge 
@@ -269,16 +269,16 @@ export default function CustomerDashboard() {
                           discount={offer.discount_percent} 
                           code={offer.discount_code} 
                         />
-                        <p className="text-xs font-extrabold text-slate-900 dark:text-slate-50 truncate mt-2">
+                        <p className="coupon-card-title text-xs font-extrabold truncate mt-2">
                           {offer.title}
                         </p>
-                        <p className="text-[11px] font-bold text-emerald-800 dark:text-emerald-400 truncate mt-0.5">
+                        <p className="coupon-card-shop text-[11px] font-bold truncate mt-0.5">
                           📍 {offer.business_name}
                         </p>
                       </div>
                       <Link
                         to={`/business/${offer.business_id}`}
-                        className="shrink-0 p-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition-colors shadow-xs"
+                        className="coupon-card-btn shrink-0 p-2.5 rounded-xl transition-colors shadow-xs"
                         title="View deal"
                         aria-label={`View deal: ${offer.title}`}
                       >

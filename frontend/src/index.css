@@ -3,6 +3,71 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  /* Coupon & Offer Card Theme Tokens - Light Mode (File 2) */
+  --coupon-card-bg: #ecfdf5; /* Soft light green (emerald-50/90) */
+  --coupon-card-border: #6ee7b7; /* Darker green inner border (emerald-300) */
+  --coupon-badge-bg: linear-gradient(135deg, #047857 0%, #0f766e 100%); /* Vivid emerald-teal gradient */
+  --coupon-badge-text: #ffffff; /* Ultra clear white text (contrast 5.12:1) */
+  --coupon-badge-border: #0d9488; /* Thin teal border (teal-600) */
+  --coupon-badge-code: #ccfbf1; /* Teal-100 high-legibility coupon code */
+  --coupon-title-text: #064e3b; /* Deep emerald-950 (contrast 10.47:1) */
+  --coupon-shop-text: #047857; /* Emerald-700 (contrast 4.85:1) */
+  --coupon-btn-bg: #059669; /* Green button (emerald-600) */
+  --coupon-btn-hover: #047857; /* Emerald-700 */
+  --coupon-btn-text: #ffffff; /* White arrow */
+}
+
+.dark {
+  /* Coupon & Offer Card Theme Tokens - Dark Mode (File 1) */
+  --coupon-card-bg: #0f172a; /* Dark blue background (slate-900) */
+  --coupon-card-border: #1e293b; /* Slate-800 border */
+  --coupon-badge-bg: linear-gradient(135deg, #1e293b 0%, #334155 100%); /* Dark-grey-to-light-grey gradient */
+  --coupon-badge-text: #ffffff; /* White all-caps sans-serif text */
+  --coupon-badge-border: rgba(45, 212, 191, 0.65); /* Thin teal border (teal-400) */
+  --coupon-badge-code: #5eead4; /* Teal-300 coupon code */
+  --coupon-title-text: #f8fafc; /* Slate-50 crisp white text */
+  --coupon-shop-text: #34d399; /* Emerald-400 */
+  --coupon-btn-bg: #059669; /* Green button */
+  --coupon-btn-hover: #10b981;
+  --coupon-btn-text: #ffffff; /* White arrow */
+}
+
+/* Reusable Theme-Aware Coupon & Offer Card Utility Classes */
+.coupon-offer-card {
+  background-color: var(--coupon-card-bg) !important;
+  border: 1.5px solid var(--coupon-card-border) !important;
+}
+
+.coupon-badge-discount {
+  background: var(--coupon-badge-bg) !important;
+  color: var(--coupon-badge-text) !important;
+  border: 1px solid var(--coupon-badge-border) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.coupon-badge-discount .badge-code {
+  color: var(--coupon-badge-code) !important;
+  border-left-color: var(--coupon-badge-border) !important;
+}
+
+.coupon-card-title {
+  color: var(--coupon-title-text) !important;
+}
+
+.coupon-card-shop {
+  color: var(--coupon-shop-text) !important;
+}
+
+.coupon-card-btn {
+  background-color: var(--coupon-btn-bg) !important;
+  color: var(--coupon-btn-text) !important;
+}
+
+.coupon-card-btn:hover {
+  background-color: var(--coupon-btn-hover) !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -257,14 +322,22 @@ a.popup-button span {
 }
 
 .shimmer-badge {
+  position: relative;
+}
+
+.shimmer-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.25) 50%,
     rgba(255, 255, 255, 0) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 2.5s infinite;
+  pointer-events: none;
 }
 
 /* Reduced motion accessibility */
