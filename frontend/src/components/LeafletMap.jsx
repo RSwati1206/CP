@@ -158,33 +158,33 @@ export default function LeafletMap({
 
       const marker = L.marker([b.latitude, b.longitude], { icon }).addTo(map);
 
-      // High contrast, WCAG AA compliant popup HTML (File 4 fix)
+      // High contrast, WCAG AA compliant popup HTML (Screenshot 5 Fix)
       const popupHtml = `
-        <div style="min-width: 200px;" class="bizconnect-map-popup p-1">
-          <div class="flex items-center justify-between gap-2 mb-1.5">
-            <span class="popup-category text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" style="background-color: ${color}22; color: ${color}; border: 1px solid ${color}55;">
+        <div style="min-width: 220px; max-width: 260px;" class="bizconnect-map-popup p-1">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px;">
+            <span class="popup-category" style="background-color: ${color}20; color: ${color}; border: 1.5px solid ${color}66; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">
               ${b.category}
             </span>
-            <span class="popup-rating text-xs font-bold text-amber-500 flex items-center gap-0.5">
+            <span class="popup-rating" style="font-size: 11px; font-weight: 800; display: flex; align-items: center; gap: 2px;">
               ★ ${b.average_rating || 'New'}
             </span>
           </div>
-          <h4 class="popup-title font-bold text-sm text-slate-900 mb-1 leading-snug">
+          <h4 class="popup-title" style="font-weight: 800; font-size: 14px; margin: 0 0 4px 0; line-height: 1.25;">
             ${b.name}
           </h4>
-          <p class="popup-address text-xs text-slate-600 mb-2 leading-tight">
+          <p class="popup-address" style="font-size: 11px; margin: 0 0 6px 0; line-height: 1.35;">
             ${b.address}
           </p>
           ${b.distance_km !== undefined ? `
-            <div class="popup-distance text-xs font-semibold text-slate-700 mb-2">
+            <div class="popup-distance" style="font-size: 11px; font-weight: 700; margin-bottom: 6px;">
               📍 ${b.distance_km} km away
             </div>` : ''}
           ${b.active_offers_count ? `
-            <div class="popup-offers text-[11px] font-bold text-emerald-600 mb-2">
+            <div class="popup-offers" style="font-size: 11px; font-weight: 800; margin-bottom: 8px;">
               🎁 ${b.active_offers_count} Active Deal(s)
             </div>` : ''}
-          <a href="/business/${b.id}" class="popup-button inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-xl no-underline transition-colors shadow-xs">
-            View Store Details →
+          <a href="/business/${b.id}" class="popup-button" style="display: block; width: 100%; text-align: center; background-color: #2563eb !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; font-weight: 800; font-size: 12px; padding: 9px 12px; border-radius: 10px; text-decoration: none; margin-top: 6px; box-shadow: 0 2px 5px rgba(37,99,235,0.35);">
+            <span style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; font-weight: 800;">View Store Details →</span>
           </a>
         </div>
       `;

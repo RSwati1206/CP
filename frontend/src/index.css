@@ -35,7 +35,85 @@ body {
   filter: brightness(0.7) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.75);
 }
 
-/* Leaflet Dark Mode Popup Theme & WCAG AA Contrast Guarantee (File 4 fix) */
+/* Leaflet Popup Theme & WCAG AA Contrast Guarantee (Light & Dark Modes) */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.15) !important;
+}
+
+.leaflet-popup-content {
+  color: #0f172a !important;
+  margin: 12px !important;
+}
+
+.leaflet-popup-content h4,
+.leaflet-popup-content .popup-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.leaflet-popup-content p,
+.leaflet-popup-content .popup-address {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+.leaflet-popup-content .popup-distance {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.leaflet-popup-content .popup-rating {
+  color: #b45309 !important;
+  font-weight: 800 !important;
+}
+
+.leaflet-popup-content .popup-offers {
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+
+/* Force popup button text to ALWAYS be visible and white in both themes */
+.leaflet-container a.popup-button,
+.leaflet-popup-content a.popup-button,
+.leaflet-popup-content .popup-button,
+a.popup-button {
+  display: block !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 800 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  padding: 8px 12px !important;
+  border-radius: 10px !important;
+  line-height: 1.4 !important;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.35) !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.leaflet-container a.popup-button:hover,
+.leaflet-popup-content a.popup-button:hover,
+.leaflet-popup-content .popup-button:hover,
+a.popup-button:hover {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.leaflet-container a.popup-button span,
+.leaflet-popup-content a.popup-button span,
+a.popup-button span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+/* Dark Mode Leaflet Popup Overrides */
 .dark .leaflet-popup-content-wrapper,
 .dark .leaflet-popup-tip {
   background-color: #0f172a !important; /* Deep rich slate */
@@ -52,47 +130,59 @@ body {
 .dark .leaflet-popup-content h4,
 .dark .leaflet-popup-content .popup-title {
   color: #ffffff !important; /* Pure white on Slate-900 (15.5:1 ratio) */
-  font-weight: 700 !important;
+  font-weight: 800 !important;
 }
 
 .dark .leaflet-popup-content p,
 .dark .leaflet-popup-content .popup-address {
   color: #cbd5e1 !important; /* Slate-300 (9.2:1 ratio) */
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }
 
 .dark .leaflet-popup-content .popup-distance {
   color: #7dd3fc !important; /* Sky-300 (8.5:1 ratio) */
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 
 .dark .leaflet-popup-content .popup-rating {
   color: #fbbf24 !important; /* Amber-400 (9.8:1 ratio) */
-  font-weight: 700 !important;
+  font-weight: 800 !important;
 }
 
 .dark .leaflet-popup-content .popup-offers {
   color: #34d399 !important; /* Emerald-400 (8.3:1 ratio) */
-  font-weight: 700 !important;
+  font-weight: 800 !important;
 }
 
 .dark .leaflet-popup-content .popup-category {
   background-color: rgba(56, 189, 248, 0.18) !important;
   color: #38bdf8 !important; /* Sky-400 vivid badge */
   border: 1px solid rgba(56, 189, 248, 0.35) !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
 }
 
+.dark .leaflet-container a.popup-button,
 .dark .leaflet-popup-content a.popup-button,
 .dark .leaflet-popup-content .popup-button {
   background-color: #2563eb !important;
   color: #ffffff !important;
-  font-weight: 700 !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 800 !important;
 }
 
+.dark .leaflet-container a.popup-button:hover,
 .dark .leaflet-popup-content a.popup-button:hover,
 .dark .leaflet-popup-content .popup-button:hover {
   background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.dark .leaflet-container a.popup-button span,
+.dark .leaflet-popup-content a.popup-button span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 800 !important;
 }
 
 /* Animations and keyframes */

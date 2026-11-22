@@ -144,7 +144,7 @@ export default function BusinessDetail() {
       </div>
 
       {/* Hero Header Card */}
-      <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
+      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
         <div className="relative h-64 sm:h-80 w-full">
           <img 
             src={business.image_url} 
@@ -184,20 +184,20 @@ export default function BusinessDetail() {
         </div>
 
         {/* Quick Contact & Info Ribbon */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 bg-slate-50/50 p-4 border-t border-slate-100 text-xs">
+        <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 dark:divide-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-4 border-t border-slate-100 dark:border-slate-800 text-xs">
           <div className="p-2 flex items-center gap-2.5">
-            <Clock className="w-4 h-4 text-blue-600 shrink-0" />
+            <Clock className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
             <div>
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Hours</span>
-              <span className="font-semibold text-slate-800">{business.opening_hours || 'Mon-Sat: 9am-9pm'}</span>
+              <span className="text-slate-400 dark:text-slate-500 block text-[10px] uppercase font-bold">Hours</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-200">{business.opening_hours || 'Mon-Sat: 9am-9pm'}</span>
             </div>
           </div>
 
           <div className="p-2 flex items-center gap-2.5">
-            <Phone className="w-4 h-4 text-emerald-600 shrink-0" />
+            <Phone className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
             <div>
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Contact</span>
-              <a href={`tel:${business.phone}`} className="font-semibold text-slate-800 hover:text-blue-600">
+              <span className="text-slate-400 dark:text-slate-500 block text-[10px] uppercase font-bold">Contact</span>
+              <a href={`tel:${business.phone}`} className="font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400">
                 {business.phone || '+91 80 2860 1122'}
               </a>
             </div>
@@ -206,16 +206,16 @@ export default function BusinessDetail() {
           <div className="p-2 flex items-center gap-2.5">
             <Star className="w-4 h-4 text-amber-500 fill-current shrink-0" />
             <div>
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Community Rating</span>
-              <span className="font-semibold text-slate-800">{business.average_rating} / 5.0 ({business.reviews?.length || 0} reviews)</span>
+              <span className="text-slate-400 dark:text-slate-500 block text-[10px] uppercase font-bold">Community Rating</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-200">{business.average_rating} / 5.0 ({business.reviews?.length || 0} reviews)</span>
             </div>
           </div>
 
           <div className="p-2 flex items-center gap-2.5">
-            <ThumbsUp className="w-4 h-4 text-indigo-600 shrink-0" />
+            <ThumbsUp className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
             <div>
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Sentiment Score</span>
-              <span className="font-semibold text-indigo-700">{business.positive_sentiment_pct || 90}% Positive</span>
+              <span className="text-slate-400 dark:text-slate-500 block text-[10px] uppercase font-bold">Sentiment Score</span>
+              <span className="font-semibold text-indigo-700 dark:text-indigo-400">{business.positive_sentiment_pct || 90}% Positive</span>
             </div>
           </div>
         </div>
@@ -227,43 +227,38 @@ export default function BusinessDetail() {
         {/* Left Column (Deals, Events, Reviews) */}
         <div className="lg:col-span-8 space-y-6">
           
-          {/* Tabs header */}
-          <div className="flex border-b border-slate-200 gap-4">
-            <button
-              onClick={() => setActiveTab('deals')}
-              className={`pb-3 text-sm font-bold flex items-center gap-2 transition-all cursor-pointer border-b-2 ${
-                activeTab === 'deals'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              <Tag className="w-4 h-4" />
-              Active Offers & Deals ({business.offers?.length || 0})
-            </button>
-
-            <button
-              onClick={() => setActiveTab('events')}
-              className={`pb-3 text-sm font-bold flex items-center gap-2 transition-all cursor-pointer border-b-2 ${
-                activeTab === 'events'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              <Calendar className="w-4 h-4" />
-              Upcoming Local Events ({business.events?.length || 0})
-            </button>
-
-            <button
-              onClick={() => setActiveTab('reviews')}
-              className={`pb-3 text-sm font-bold flex items-center gap-2 transition-all cursor-pointer border-b-2 ${
-                activeTab === 'reviews'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              <MessageSquare className="w-4 h-4" />
-              Customer Reviews ({business.reviews?.length || 0})
-            </button>
+          {/* Tabs header - Refined, Theme-Aware Tab Navigation (Screenshot 4) */}
+          <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-px overflow-x-auto">
+            {[
+              { id: 'deals', label: 'Active Offers & Deals', count: business.offers?.length || 0, icon: Tag },
+              { id: 'events', label: 'Upcoming Local Events', count: business.events?.length || 0, icon: Calendar },
+              { id: 'reviews', label: 'Customer Reviews', count: business.reviews?.length || 0, icon: MessageSquare }
+            ].map(({ id: tabId, label, count, icon: TabIcon }) => {
+              const isActive = activeTab === tabId;
+              return (
+                <button
+                  key={tabId}
+                  onClick={() => setActiveTab(tabId)}
+                  className={`group relative py-3.5 px-4 text-sm font-bold flex items-center gap-2.5 transition-all duration-200 cursor-pointer rounded-t-xl border-b-2 whitespace-nowrap ${
+                    isActive
+                      ? 'border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 bg-blue-50/70 dark:bg-blue-950/40 shadow-2xs font-extrabold'
+                      : 'border-transparent text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60'
+                  }`}
+                >
+                  <TabIcon className={`w-4 h-4 transition-colors ${
+                    isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200'
+                  }`} />
+                  <span>{label}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-bold transition-colors ${
+                    isActive
+                      ? 'bg-blue-100 dark:bg-blue-900/80 text-blue-700 dark:text-blue-300'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-700'
+                  }`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Tab 1: Deals & Offers */}
@@ -311,19 +306,19 @@ export default function BusinessDetail() {
           {activeTab === 'events' && (
             <div className="space-y-4">
               {business.events?.length === 0 ? (
-                <div className="bg-white p-8 rounded-2xl border border-slate-200 text-center text-slate-500">
-                  <Calendar className="w-10 h-10 text-slate-300 mx-auto mb-2" />
-                  <p className="text-sm font-medium">No upcoming local events scheduled right now.</p>
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-slate-500">
+                  <Calendar className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-2" />
+                  <p className="text-sm font-medium dark:text-slate-300">No upcoming local events scheduled right now.</p>
                 </div>
               ) : (
                 business.events.map((ev) => (
-                  <div key={ev.id} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-blue-600">
+                  <div key={ev.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400">
                       <Calendar className="w-4 h-4" />
                       <span>{new Date(ev.start_date).toLocaleDateString()} - {new Date(ev.end_date).toLocaleDateString()}</span>
                     </div>
-                    <h3 className="font-bold text-slate-900 text-base">{ev.title}</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">{ev.description}</p>
+                    <h3 className="font-bold text-slate-900 dark:text-white text-base">{ev.title}</h3>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{ev.description}</p>
                   </div>
                 ))
               )}
@@ -335,51 +330,51 @@ export default function BusinessDetail() {
             <div className="space-y-6">
               
               {/* Sentiment & Star Summary Card */}
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div className="text-center sm:text-left">
-                  <span className="text-4xl font-extrabold text-slate-900">{business.average_rating}</span>
+                  <span className="text-4xl font-extrabold text-slate-900 dark:text-white">{business.average_rating}</span>
                   <span className="text-sm text-slate-400 font-semibold"> / 5.0</span>
                   <div className="flex items-center justify-center sm:justify-start gap-1 text-amber-500 my-1">
                     {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} className={`w-4 h-4 ${s <= Math.round(business.average_rating) ? 'fill-current' : 'text-slate-300'}`} />
+                      <Star key={s} className={`w-4 h-4 ${s <= Math.round(business.average_rating) ? 'fill-current' : 'text-slate-300 dark:text-slate-600'}`} />
                     ))}
                   </div>
-                  <span className="text-xs text-slate-500 font-medium">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                     Based on {business.reviews?.length || 0} verified customer reviews
                   </span>
                 </div>
 
-                <div className="w-full sm:w-64 bg-white p-3 rounded-xl border border-slate-200 text-xs space-y-2">
-                  <div className="flex items-center justify-between font-bold text-slate-700">
-                    <span className="flex items-center gap-1.5 text-emerald-700">
+                <div className="w-full sm:w-64 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-2">
+                  <div className="flex items-center justify-between font-bold text-slate-700 dark:text-slate-200">
+                    <span className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
                       <ThumbsUp className="w-3.5 h-3.5" /> Positive
                     </span>
                     <span>{business.positive_sentiment_pct}%</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden flex">
+                  <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden flex">
                     <div style={{ width: `${business.positive_sentiment_pct}%` }} className="bg-emerald-500 h-full" />
                     <div style={{ width: `${100 - business.positive_sentiment_pct}%` }} className="bg-rose-400 h-full" />
                   </div>
-                  <p className="text-[10px] text-slate-400 text-center">
+                  <p className="text-[10px] text-slate-400 dark:text-slate-500 text-center">
                     Classified via Python NLP Sentiment Classifier
                   </p>
                 </div>
               </div>
 
               {/* Write Review Form */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-                <h3 className="font-bold text-slate-900 text-base mb-1">Write a Customer Review</h3>
-                <p className="text-xs text-slate-500 mb-4">
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">Write a Customer Review</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
                   Share your experience to help local neighbors. Your review will be automatically analyzed for sentiment.
                 </p>
 
                 {reviewSuccessMsg && (
-                  <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 space-y-1">
+                  <div className="mb-4 p-3 bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 rounded-xl text-xs text-emerald-800 dark:text-emerald-200 space-y-1">
                     <p className="font-bold flex items-center gap-1">
                       <Check className="w-4 h-4" /> {reviewSuccessMsg}
                     </p>
                     {classifiedSentimentResult && (
-                      <div className="text-[11px] text-emerald-700 pt-1">
+                      <div className="text-[11px] text-emerald-700 dark:text-emerald-300 pt-1">
                         Detected Sentiment: <strong className="uppercase">{classifiedSentimentResult.sentiment}</strong> (Confidence: {classifiedSentimentResult.confidence * 100}%)
                       </div>
                     )}
@@ -387,14 +382,14 @@ export default function BusinessDetail() {
                 )}
 
                 {reviewError && (
-                  <div className="mb-4 p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-800 font-medium">
+                  <div className="mb-4 p-3 bg-rose-50 dark:bg-rose-950/70 border border-rose-200 dark:border-rose-800 rounded-xl text-xs text-rose-800 dark:text-rose-200 font-medium">
                     {reviewError}
                   </div>
                 )}
 
                 <form onSubmit={handleReviewSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Your Rating</label>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Your Rating</label>
                     <div className="flex items-center gap-2">
                       {[1, 2, 3, 4, 5].map((s) => (
                         <button
@@ -403,33 +398,33 @@ export default function BusinessDetail() {
                           onClick={() => setRating(s)}
                           className="p-1 text-amber-400 hover:scale-110 transition-transform cursor-pointer"
                         >
-                          <Star className={`w-6 h-6 ${s <= rating ? 'fill-current text-amber-500' : 'text-slate-300'}`} />
+                          <Star className={`w-6 h-6 ${s <= rating ? 'fill-current text-amber-500' : 'text-slate-300 dark:text-slate-600'}`} />
                         </button>
                       ))}
-                      <span className="text-xs font-bold text-slate-700 ml-2">{rating} of 5 Stars</span>
+                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300 ml-2">{rating} of 5 Stars</span>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Review Headline (Optional)</label>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Review Headline (Optional)</label>
                     <input
                       type="text"
                       placeholder="e.g. Delicious food and fast service!"
                       value={reviewTitle}
                       onChange={(e) => setReviewTitle(e.target.value)}
-                      className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Detailed Feedback</label>
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Detailed Feedback</label>
                     <textarea
                       required
                       rows={3}
                       placeholder="Write your honest thoughts about service quality, cleanliness, staff politeness, pricing..."
                       value={reviewComment}
                       onChange={(e) => setReviewComment(e.target.value)}
-                      className="w-full text-xs px-3.5 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full text-xs px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
 
@@ -452,23 +447,23 @@ export default function BusinessDetail() {
               {/* Reviews List */}
               <div className="space-y-3">
                 {business.reviews?.map((r) => (
-                  <div key={r.id} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-2">
+                  <div key={r.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-slate-100 font-bold text-xs text-slate-600 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 font-bold text-xs text-slate-600 dark:text-slate-300 flex items-center justify-center">
                           {r.user_name ? r.user_name[0] : 'U'}
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-slate-900">{r.user_name}</p>
-                          <span className="text-[10px] text-slate-400">{new Date(r.created_at).toLocaleDateString()}</span>
+                          <p className="text-xs font-bold text-slate-900 dark:text-white">{r.user_name}</p>
+                          <span className="text-[10px] text-slate-400 dark:text-slate-500">{new Date(r.created_at).toLocaleDateString()}</span>
                         </div>
                       </div>
 
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase flex items-center gap-1 ${
                           r.sentiment === 'positive'
-                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                            : 'bg-rose-50 text-rose-700 border border-rose-200'
+                            ? 'bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
+                            : 'bg-rose-50 dark:bg-rose-950/70 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800'
                         }`}>
                           {r.sentiment === 'positive' ? <ThumbsUp className="w-2.5 h-2.5" /> : <ThumbsDown className="w-2.5 h-2.5" />}
                           {r.sentiment}
@@ -482,9 +477,9 @@ export default function BusinessDetail() {
                     </div>
 
                     {r.title && (
-                      <h4 className="text-xs font-bold text-slate-800">{r.title}</h4>
+                      <h4 className="text-xs font-bold text-slate-800 dark:text-slate-100">{r.title}</h4>
                     )}
-                    <p className="text-xs text-slate-600 leading-relaxed">{r.comment}</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{r.comment}</p>
                   </div>
                 ))}
               </div>
@@ -498,16 +493,16 @@ export default function BusinessDetail() {
         <div className="lg:col-span-4 space-y-6">
           
           {/* About Section */}
-          <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-3">
-            <h3 className="font-bold text-slate-900 text-sm">About This Business</h3>
-            <p className="text-xs text-slate-600 leading-relaxed">{business.description}</p>
+          <div className="bg-white dark:bg-slate-900 p-5 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">About This Business</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{business.description}</p>
 
             {business.tags?.length > 0 && (
               <div className="pt-2">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">Specialties & Tags</span>
+                <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-1.5">Specialties & Tags</span>
                 <div className="flex flex-wrap gap-1.5">
                   {business.tags.map((tag) => (
-                    <span key={tag} className="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">
+                    <span key={tag} className="text-[11px] bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-2.5 py-0.5 rounded-md font-medium border border-slate-200/60 dark:border-slate-700">
                       #{tag}
                     </span>
                   ))}
@@ -517,12 +512,12 @@ export default function BusinessDetail() {
           </div>
 
           {/* Interactive Map Pin Location */}
-          <div className="bg-white p-4 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+          <div className="bg-white dark:bg-slate-900 p-4 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-slate-900 text-xs flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-blue-600" /> Location Pin
+              <span className="font-bold text-slate-900 dark:text-white text-xs flex items-center gap-1.5">
+                <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400" /> Location Pin
               </span>
-              <span className="text-[10px] text-slate-500">{business.city}</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400">{business.city}</span>
             </div>
 
             <LeafletMap
@@ -532,22 +527,22 @@ export default function BusinessDetail() {
               className="h-56 w-full rounded-2xl"
             />
 
-            <p className="text-[11px] text-slate-500 font-medium">{business.address}</p>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">{business.address}</p>
           </div>
 
           {/* Social Share Box */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50/50 p-5 rounded-3xl border border-blue-200/60 shadow-sm space-y-3">
-            <h4 className="font-bold text-slate-900 text-xs flex items-center gap-1.5">
-              <Share2 className="w-4 h-4 text-blue-600" /> Share with Friends & Neighbors
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50/50 dark:from-slate-900 dark:to-blue-950/40 p-5 rounded-3xl border border-blue-200/60 dark:border-blue-900/40 shadow-sm space-y-3">
+            <h4 className="font-bold text-slate-900 dark:text-white text-xs flex items-center gap-1.5">
+              <Share2 className="w-4 h-4 text-blue-600 dark:text-blue-400" /> Share with Friends & Neighbors
             </h4>
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-slate-600 dark:text-slate-300">
               Spread the word about this local business on WhatsApp, Facebook, or copy a direct link.
             </p>
             
             <div className="flex items-center gap-2">
               <button
                 onClick={handleCopyLink}
-                className="flex-1 py-2 px-3 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-700 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                className="flex-1 py-2 px-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                 {copiedLink ? 'Link Copied!' : 'Copy Link'}

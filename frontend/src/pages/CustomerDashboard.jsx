@@ -152,29 +152,31 @@ export default function CustomerDashboard() {
       {/* Personalized Recommendations Section */}
       {recommendations.recommended_shops.length > 0 && (
         <ScrollReveal direction="up" duration={600}>
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-5 transition-colors">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 flex items-center justify-center">
-                    <Sparkles className="w-4 h-4" />
-                  </div>
-                  <h2 className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-6 transition-colors">
+            
+            {/* Screenshot 1: Refined Aesthetic Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-100 dark:border-slate-800/80">
+              <div className="flex items-center gap-3.5">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-400 via-amber-300 to-amber-200 dark:from-amber-600 dark:via-amber-500 dark:to-amber-400 text-amber-950 flex items-center justify-center shadow-md shadow-amber-500/20 shrink-0 ring-1 ring-amber-400/40">
+                  <Sparkles className="w-5 h-5 fill-amber-950/20" />
+                </div>
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
                     Personalized Recommendations
                   </h2>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5 font-normal">
+                    Curated specifically for you based on your browsing patterns, ratings, and proximity.
+                  </p>
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                  Curated specifically for you based on your browsing patterns, ratings, and proximity.
-                </p>
               </div>
 
               {recommendations.top_categories_affinity.length > 0 && (
                 <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-                  <span className="font-medium">Top Interests:</span>
+                  <span className="font-semibold text-slate-700 dark:text-slate-300">Top Interests:</span>
                   {recommendations.top_categories_affinity.map(([cat]) => (
                     <span 
                       key={cat} 
-                      className="px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-[11px] border border-slate-200/60 dark:border-slate-700"
+                      className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-[11px] border border-slate-200/80 dark:border-slate-700 shadow-2xs"
                     >
                       {cat}
                     </span>
@@ -184,7 +186,7 @@ export default function CustomerDashboard() {
             </div>
 
             {/* Recommendations Grid with Staggered Scroll Animation */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-1">
               {recommendations.recommended_shops.slice(0, 3).map((shop, idx) => (
                 <ScrollReveal key={shop.id} delay={100} staggerIndex={idx} duration={500}>
                   <div 
@@ -238,18 +240,28 @@ export default function CustomerDashboard() {
               ))}
             </div>
 
-            {/* Active Featured Deals Ribbon with DealBadge */}
+            {/* Screenshot 2: Cohesive Aesthetic Header & Theme-Aware Deal Cards */}
             {recommendations.recommended_offers.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800">
-                <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <Flame className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  Featured Local Deals For You
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="mt-8 pt-6 border-t border-slate-200/80 dark:border-slate-800">
+                <div className="flex items-center gap-3.5 mb-4">
+                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-emerald-400 to-teal-300 dark:from-emerald-600 dark:via-teal-500 dark:to-teal-400 text-white flex items-center justify-center shadow-md shadow-emerald-500/20 shrink-0 ring-1 ring-emerald-400/40">
+                    <Flame className="w-5 h-5 fill-white/20" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white tracking-tight uppercase flex items-center gap-2">
+                      Featured Local Deals For You
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5 font-normal">
+                      Hand-picked neighborhood discounts & exclusive limited-time promotions.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
                   {recommendations.recommended_offers.map((offer) => (
                     <div 
                       key={offer.id} 
-                      className="p-3 bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 rounded-2xl flex items-center justify-between hover:shadow-sm transition-all"
+                      className="p-3.5 bg-emerald-50/90 dark:bg-slate-800/90 border border-emerald-200/90 dark:border-slate-700 rounded-2xl flex items-center justify-between hover:shadow-md transition-all duration-200"
                     >
                       <div className="min-w-0 pr-2">
                         <DealBadge 
@@ -257,12 +269,16 @@ export default function CustomerDashboard() {
                           discount={offer.discount_percent} 
                           code={offer.discount_code} 
                         />
-                        <p className="text-xs font-bold text-slate-900 dark:text-white truncate mt-1.5">{offer.title}</p>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">📍 {offer.business_name}</p>
+                        <p className="text-xs font-extrabold text-slate-900 dark:text-slate-50 truncate mt-2">
+                          {offer.title}
+                        </p>
+                        <p className="text-[11px] font-bold text-emerald-800 dark:text-emerald-400 truncate mt-0.5">
+                          📍 {offer.business_name}
+                        </p>
                       </div>
                       <Link
                         to={`/business/${offer.business_id}`}
-                        className="shrink-0 p-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition-colors shadow-2xs"
+                        className="shrink-0 p-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition-colors shadow-xs"
                         title="View deal"
                         aria-label={`View deal: ${offer.title}`}
                       >
