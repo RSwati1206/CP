@@ -15,12 +15,6 @@ Developed strictly in accordance with the project synopsis screening architectur
 - **Project Title:** Local Business Promotion and Market Analytics Portal
 - **Institution:** RNS Institute of Technology (RNSIT), Bengaluru
 - **Department:** Department of Computer Science & Engineering
-- **Guide:** Dr. Prakash S, Associate Professor, Dept. of CSE, RNSIT
-- **Student Team:**
-  - **R. Swati** `[1IB25CS165]`
-  - **Priya Javalagi** `[1IB25CS160]`
-  - **Roshni** `[1IB25CS178]`
-  - **Piyush Bhati** `[1RN26CS840-T]`
 
 ---
 
